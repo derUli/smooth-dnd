@@ -247,7 +247,7 @@ export const isMobile = () => {
       global.navigator.userAgent.match(/BlackBerry/i) ||
       global.navigator.userAgent.match(/Windows Phone/i) ||
       // iPad OS / iOS 13 on iPad
-      (global.navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) 
+      (global.navigator.platform === 'MacIntel' && global.navigator.maxTouchPoints > 1) 
     ) {
       console.log('dnd is mobile:', true, 'useragent:', global.navigator.userAgent)
       return true;
