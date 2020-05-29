@@ -334,7 +334,6 @@ function onMouseDown(event) {
       console.log('dnd ', 'onMouseDown', 'startDrag:', startDrag)
 
       if (startDrag) {
-
         event.preventDefault()
         handleDragStartConditions(e, container.getOptions().dragBeginDelay, () => {
           //disableScroll();
@@ -414,7 +413,7 @@ function getScrollHandler(container, dragListeningContainers) {
     console.log('dnd autoscroll is enabled');
     return dragScroller(dragListeningContainers);
   } else {
-    console.log('dnd autoscroll is enabled');
+    console.log('dnd autoscroll is disabled');
     return () => null;
   }
 }
