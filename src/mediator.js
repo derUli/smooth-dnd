@@ -4,9 +4,9 @@ import * as constants from './constants';
 import { addStyleToHead, addCursorStyleToBody, removeStyle } from './styles';
 import dragScroller from './dragscroller';
 
-const grabEvents = ['mousedown', 'touchstart'];
+const grabEvents = ['touchstart'];
 const moveEvents = ['touchmove'];
-const releaseEvents = ['mouseup', 'touchend'];
+const releaseEvents = ['touchend'];
 
 let dragListeningContainers = null;
 let grabbedElement = null;
