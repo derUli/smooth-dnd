@@ -441,6 +441,10 @@ function initiateDrag(position, cursor) {
   if (handleScroll) {
     handleScroll({ reset: true });
   }
+
+
+  console.log('dnd initiate drag', position, 'cursor', cursor, 'handleScroll', handleScroll)
+  
   handleScroll = getScrollHandler(container, dragListeningContainers);
   dragListeningContainers.forEach(p => p.prepareDrag(p, dragListeningContainers));
   fireOnDragStartEnd(true);
