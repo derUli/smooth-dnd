@@ -5,7 +5,7 @@ import { addStyleToHead, addCursorStyleToBody, removeStyle } from './styles';
 import dragScroller from './dragscroller';
 
 const grabEvents = ['mousedown', 'touchstart'];
-const moveEvents = ['mousemove', 'touchmove'];
+const moveEvents = ['touchmove'];
 const releaseEvents = ['mouseup', 'touchend'];
 
 let dragListeningContainers = null;
@@ -209,7 +209,7 @@ const handleDragStartConditions = (function handleDragStartConditions() {
   let clb;
   let timer = null;
   const moveThreshold = 1;
-  const maxMoveInDelay = 30;
+  const maxMoveInDelay = 5;
 
 
   function onMove(event) {
