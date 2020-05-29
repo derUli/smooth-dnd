@@ -211,12 +211,10 @@ const handleDragStartConditions = (function handleDragStartConditions() {
   const moveThreshold = 1;
   const maxMoveInDelay = 5;
 
-  console.log('dnd', 'handleDragStartConditions', 'startEvent:', startEvent,
-  'delay:', delay, 'clb:', clb, 'timer:', timer)
 
   function onMove(event) {
     const { clientX: currentX, clientY: currentY } = getPointerEvent(event);
-
+    console.log('dnd pointer event:', getPointerEvent(event))
     console.log('dnd onMove', 'clientX:', clientX, 'clientY', clientY)
     if (!delay) {
       console.log('dnd no delay')
@@ -232,7 +230,6 @@ const handleDragStartConditions = (function handleDragStartConditions() {
         Math.abs(startEvent.clientX - currentX) > maxMoveInDelay ||
         Math.abs(startEvent.clientY - currentY) > maxMoveInDelay
       ) {
-        console.log('dnd deregister event')
         deregisterEvent();
       }
     }
@@ -250,6 +247,8 @@ const handleDragStartConditions = (function handleDragStartConditions() {
       timer = setTimeout(callCallback, delay);
     }
 
+    console.log('dnd register events')
+
     moveEvents.forEach(e => global.document.addEventListener(e, onMove), {
       passive: false
     });
@@ -262,6 +261,7 @@ const handleDragStartConditions = (function handleDragStartConditions() {
   }
 
   function deregisterEvent() {
+    console.log('dnd deregister event')
     clearTimeout(timer);
     moveEvents.forEach(e => global.document.removeEventListener(e, onMove), {
       passive: false
@@ -292,8 +292,10 @@ const handleDragStartConditions = (function handleDragStartConditions() {
 
 function onMouseDown(event) {
   const e = getPointerEvent(event);
+  console.log('dnd mouse down event', e)
   if (!isDragging && (e.button === undefined || e.button === 0)) {
     grabbedElement = Utils.getParent(e.target, '.' + constants.wrapperClass);
+    console.log('dnd grabbed element', grabbedElement)
     if (grabbedElement) {
       const containerElement = Utils.getParent(grabbedElement, '.' + constants.containerClass);
       const container = containers.filter(p => p.element === containerElement)[0];
