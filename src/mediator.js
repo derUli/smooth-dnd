@@ -316,7 +316,7 @@ function onMouseDown(event) {
       console.log('dnd ', 'onMouseDown', 'startDrag:', startDrag)
 
       if (startDrag) {
-        event.preventDefault()
+        //event.preventDefault()
         handleDragStartConditions(e, container.getOptions().dragBeginDelay, () => {
           Utils.clearSelection();
           initiateDrag(e, Utils.getElementCursor(event.target));
