@@ -337,7 +337,7 @@ function onMouseDown(event) {
         const target = event.target
         const tagName = target.tagName
         console.log('dnd tag name', tagName)
-        if(isMobile && !['A', 'BUTTON', 'INPUT'].includes(tagName)){
+        if(isMobile){
           event.preventDefault()
         }
         
