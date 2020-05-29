@@ -231,7 +231,7 @@ const handleDragStartConditions = (function handleDragStartConditions() {
         Math.abs(startEvent.clientX - currentX) > maxMoveInDelay ||
         Math.abs(startEvent.clientY - currentY) > maxMoveInDelay
       ) {
-        deregisterEvent();
+        // deregisterEvent();
       }
     }
   }
