@@ -316,11 +316,11 @@ function onMouseDown(event) {
       console.log('dnd ', 'onMouseDown', 'startDrag:', startDrag)
 
       if (startDrag) {
+        const elements = document.querySelectorAll(".smooth-dnd-draggable-wrapper");
+        elements.forEach((element) => {
+          element.style.touchAction = 'none'
+        })
         handleDragStartConditions(e, container.getOptions().dragBeginDelay, () => {
-          const elements = document.querySelectorAll(".smooth-dnd-draggable-wrapper");
-          elements.forEach((element) => {
-            element.style.touchAction = 'none'
-          })
           
           Utils.clearSelection();
           initiateDrag(e, Utils.getElementCursor(event.target));
