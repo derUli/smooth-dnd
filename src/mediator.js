@@ -209,7 +209,7 @@ const handleDragStartConditions = (function handleDragStartConditions() {
   let clb;
   let timer = null;
   const moveThreshold = 1;
-  const maxMoveInDelay = 30;
+  const maxMoveInDelay = 3;
 
 
   function onMove(event) {
