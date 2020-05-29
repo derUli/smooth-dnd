@@ -335,8 +335,9 @@ function onMouseDown(event) {
 
       if (startDrag) {
         const target = event.target
-        const tagName = target.Name
-        if(isMobile && ! ['A', 'BUTTON', 'INPUT'].includes(tagName)){
+        const tagName = target.tagName
+        console.log('dnd tag name', tagName)
+        if(isMobile && !['A', 'BUTTON', 'INPUT'].includes(tagName)){
           event.preventDefault()
         }
         
