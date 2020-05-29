@@ -247,11 +247,14 @@ export const isMobile = () => {
       global.navigator.userAgent.match(/BlackBerry/i) ||
       global.navigator.userAgent.match(/Windows Phone/i)
     ) {
+      console.log('is mobile:', true, 'useragent:', global.navigator.userAgent)
       return true;
     } else {
+      console.log('is mobile:', false, 'useragent:', global.navigator.userAgent)
       return false;
     }
   }
+  console.log('is mobile:', false)
   return false;
 };
 
