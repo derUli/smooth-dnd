@@ -6,10 +6,6 @@
   touch-action: none;
 }
 
-.smooth-dnd-disable-touch-action .smooth-dnd-container {
-  touch-action:none;
-}
-
 .smooth-dnd-container{
   position: relative;
 }
@@ -18,8 +14,7 @@
 }
 
 .smooth-dnd-container.horizontal{
-  overflow: auto;
-  width: 100%;
+  white-space: nowrap;
 }
 
 .smooth-dnd-container.horizontal .smooth-dnd-draggable-wrapper{
