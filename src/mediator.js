@@ -333,6 +333,7 @@ function onMouseDown(event) {
 
       console.log('dnd ', 'onMouseDown', 'startDrag:', startDrag)
 
+      console.log('dnd', 'event target', event.target)
       if (startDrag) {
         event.preventDefault()
         
@@ -480,7 +481,6 @@ function initiateDrag(position, cursor) {
 }
 
 function onMouseMove(event) {
-  console.log('dnd', 'event target', event.target)
   event.preventDefault();
 
   const e = getPointerEvent(event);
