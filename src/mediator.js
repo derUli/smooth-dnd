@@ -213,6 +213,7 @@ const handleDragStartConditions = (function handleDragStartConditions() {
 
 
   function onMove(event) {
+    event.preventDefault();
     const { clientX: currentX, clientY: currentY } = getPointerEvent(event);
     //console.log('dnd pointer event:', getPointerEvent(event))
     if (!delay) {
