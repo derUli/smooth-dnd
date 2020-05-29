@@ -409,8 +409,10 @@ function dragHandler(dragListeningContainers) {
 
 function getScrollHandler(container, dragListeningContainers) {
   if (container.getOptions().autoScrollEnabled) {
+    console.log('dnd autoscroll is enabled');
     return dragScroller(dragListeningContainers);
   } else {
+    console.log('dnd autoscroll is enabled');
     return () => null;
   }
 }
