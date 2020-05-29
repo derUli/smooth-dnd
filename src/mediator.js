@@ -445,7 +445,7 @@ function initiateDrag(position, cursor) {
   sourceContainerLockAxis = container.getOptions().lockAxis ? container.getOptions().lockAxis.toLowerCase() : null;
 
   draggableInfo = getDraggableInfo(grabbedElement);
-  ghostInfo = getGhostElement(
+  ghostInfo = (
     grabbedElement,
     { x: position.clientX, y: position.clientY },
     draggableInfo.container,
@@ -480,8 +480,9 @@ function initiateDrag(position, cursor) {
 }
 
 function onMouseMove(event) {
+  console.log('dnd', 'event target', event.target)
   event.preventDefault();
-  
+
   const e = getPointerEvent(event);
   if (!draggableInfo) {
     initiateDrag(e, Utils.getElementCursor(event.target));
