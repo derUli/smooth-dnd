@@ -14,7 +14,8 @@
 }
 
 .smooth-dnd-container.horizontal{
-  white-space: nowrap;
+  overflow: auto;
+  width: 100%;
 }
 
 .smooth-dnd-container.horizontal .smooth-dnd-draggable-wrapper{
