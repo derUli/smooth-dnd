@@ -334,7 +334,11 @@ function onMouseDown(event) {
       console.log('dnd ', 'onMouseDown', 'startDrag:', startDrag)
 
       if (startDrag) {
-        event.preventDefault()
+        const target = event.target
+        const tagName = target.Name
+        if(isMobile && ! ['A', 'BUTTON', 'INPUT'].includes(tagName)){
+          event.preventDefault()
+        }
         
         handleDragStartConditions(e, container.getOptions().dragBeginDelay, () => {
           //disableScroll();
