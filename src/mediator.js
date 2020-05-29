@@ -209,7 +209,7 @@ const handleDragStartConditions = (function handleDragStartConditions() {
   let clb;
   let timer = null;
   const moveThreshold = 1;
-  const maxMoveInDelay = 10;
+  const maxMoveInDelay = 2;
 
 
   function onMove(event) {
@@ -231,7 +231,7 @@ const handleDragStartConditions = (function handleDragStartConditions() {
         Math.abs(startEvent.clientX - currentX) > maxMoveInDelay ||
         Math.abs(startEvent.clientY - currentY) > maxMoveInDelay
       ) {
-        // deregisterEvent();
+        deregisterEvent();
       }
     }
   }
