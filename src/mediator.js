@@ -214,8 +214,7 @@ const handleDragStartConditions = (function handleDragStartConditions() {
 
   function onMove(event) {
     const { clientX: currentX, clientY: currentY } = getPointerEvent(event);
-    console.log('dnd pointer event:', getPointerEvent(event))
-    console.log('dnd onMove', 'clientX:', clientX, 'clientY', clientY)
+    //console.log('dnd pointer event:', getPointerEvent(event))
     if (!delay) {
       console.log('dnd no delay')
       if (
@@ -225,7 +224,9 @@ const handleDragStartConditions = (function handleDragStartConditions() {
         return callCallback();
       }
     } else {
-      console.log('dnd has delay')
+      console.log('dnd has delay', 
+      Math.abs(startEvent.clientX - currentX) > maxMoveInDelay ||
+      Math.abs(startEvent.clientY - currentY) > maxMoveInDelay)
       if (
         Math.abs(startEvent.clientX - currentX) > maxMoveInDelay ||
         Math.abs(startEvent.clientY - currentY) > maxMoveInDelay
