@@ -335,7 +335,7 @@ function onMouseDown(event) {
 
       if (startDrag) {
         handleDragStartConditions(e, container.getOptions().dragBeginDelay, () => {
-          
+          disableScroll();
           Utils.clearSelection();
           initiateDrag(e, Utils.getElementCursor(event.target));
           addMoveListeners();
@@ -376,6 +376,7 @@ function onMouseUp() {
       handleDrag = null;
     });
   }
+  enableScroll();
 }
 
 function getPointerEvent(e) {
