@@ -334,7 +334,7 @@ function onMouseDown(event) {
       console.log('dnd ', 'onMouseDown', 'startDrag:', startDrag)
 
       if (startDrag) {
-        if(handleScroll){
+        if(isDragging){
           event.preventDefault()
         }
         handleDragStartConditions(e, container.getOptions().dragBeginDelay, () => {
@@ -481,7 +481,7 @@ function initiateDrag(position, cursor) {
 }
 
 function onMouseMove(event) {
-  if(handleScroll){
+  if(isDragging){
     event.preventDefault();
   }
   const e = getPointerEvent(event);
