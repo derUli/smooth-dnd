@@ -294,7 +294,9 @@ const handleDragStartConditions = (function handleDragStartConditions() {
 })();
 
 function onMouseDown(event) {
-  event.preventDefault()
+  if(isDragging){
+    event.preventDefault()
+  }
   const e = getPointerEvent(event);
   console.log('dnd mouse down event', e)
   if (!isDragging && (e.button === undefined || e.button === 0)) {
