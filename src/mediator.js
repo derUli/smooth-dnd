@@ -335,7 +335,7 @@ function onMouseDown(event) {
 
       if (startDrag) {
         handleDragStartConditions(e, container.getOptions().dragBeginDelay, () => {
-          disableScroll();
+          //disableScroll();
           Utils.clearSelection();
           initiateDrag(e, Utils.getElementCursor(event.target));
           addMoveListeners();
