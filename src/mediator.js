@@ -334,6 +334,12 @@ function onMouseDown(event) {
 
 function onMouseUp() {
   console.log('dnd onmouse up');
+  
+  const elements = document.querySelectorAll(".smooth-dnd-draggable-wrapper");
+  elements.forEach((element) => {
+    element.style.touchAction = ''
+  })
+
   removeMoveListeners();
   removeReleaseListeners();
   handleScroll({ reset: true });
