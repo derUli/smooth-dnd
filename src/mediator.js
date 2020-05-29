@@ -326,10 +326,12 @@ function onMouseDown(event) {
 }
 
 function onMouseUp() {
+  console.log('dnd onmouse up');
   removeMoveListeners();
   removeReleaseListeners();
   handleScroll({ reset: true });
   if (cursorStyleElement) {
+    console.log('dnd cursor style element', cursorStyleElement)
     removeStyle(cursorStyleElement);
     cursorStyleElement = null;
   }
@@ -361,6 +363,7 @@ function getPointerEvent(e) {
 function dragHandler(dragListeningContainers) {
   let targetContainers = dragListeningContainers;
   return function(draggableInfo) {
+    console.log('dnd draggable Info', draggableInfo)
     let containerBoxChanged = false;
     targetContainers.forEach(p => {
       const dragResult = p.handleDrag(draggableInfo);
