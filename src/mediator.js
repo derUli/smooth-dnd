@@ -209,7 +209,7 @@ const handleDragStartConditions = (function handleDragStartConditions() {
   let clb;
   let timer = null;
   const moveThreshold = 1;
-  const maxMoveInDelay = 15;
+  const maxMoveInDelay = 5;
 
 
   function onMove(event) {
@@ -316,8 +316,8 @@ function onMouseDown(event) {
       console.log('dnd ', 'onMouseDown', 'startDrag:', startDrag)
 
       if (startDrag) {
+        event.preventDefault()
         handleDragStartConditions(e, container.getOptions().dragBeginDelay, () => {
-          event.preventDefault()
           Utils.clearSelection();
           initiateDrag(e, Utils.getElementCursor(event.target));
           addMoveListeners();
