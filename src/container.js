@@ -20,7 +20,7 @@ const defaultOptions = {
   orientation: 'vertical', // vertical | horizontal
   getChildPayload: null,
   animationDuration: 250,
-  autoScrollEnabled: true,
+  autoScrollEnabled: false,
   shouldAcceptDrop: null,
   shouldAnimateDrop: null
 };
@@ -745,7 +745,7 @@ const options = {
   nonDragAreaSelector: 'some selector',
   dragBeginDelay: 0,
   animationDuration: 180,
-  autoScrollEnabled: true,
+  autoScrollEnabled: false,
   lockAxis: true,
   dragClass: null,
   dropClass: null,
