@@ -4,9 +4,9 @@ import * as constants from './constants';
 import { addStyleToHead, addCursorStyleToBody, removeStyle } from './styles';
 import dragScroller from './dragscroller';
 
-const grabEvents = ['touchstart'];
-const moveEvents = ['touchmove'];
-const releaseEvents = ['touchend'];
+const grabEvents = ['mousedown', 'touchstart'];
+const moveEvents = ['mousemove', 'touchmove'];
+const releaseEvents = ['mouseup', 'touchend'];
 
 let dragListeningContainers = null;
 let grabbedElement = null;
@@ -376,7 +376,7 @@ function onMouseUp() {
       handleDrag = null;
     });
   }
-  enableScroll();
+  //enableScroll();
 }
 
 function getPointerEvent(e) {
