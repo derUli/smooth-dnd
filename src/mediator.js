@@ -217,9 +217,9 @@ const handleDragStartConditions = (function handleDragStartConditions() {
   function onMove(event) {
     const { clientX: currentX, clientY: currentY } = getPointerEvent(event);
 
-    console.log('onMove', 'clientX:', clientX, 'clientY', clientY)
+    console.log('dnd onMove', 'clientX:', clientX, 'clientY', clientY)
     if (!delay) {
-      console.log('no delay')
+      console.log('dnd no delay')
       if (
         Math.abs(startEvent.clientX - currentX) > moveThreshold ||
         Math.abs(startEvent.clientY - currentY) > moveThreshold
@@ -227,12 +227,12 @@ const handleDragStartConditions = (function handleDragStartConditions() {
         return callCallback();
       }
     } else {
-      console.log('has delay')
+      console.log('dnd has delay')
       if (
         Math.abs(startEvent.clientX - currentX) > maxMoveInDelay ||
         Math.abs(startEvent.clientY - currentY) > maxMoveInDelay
       ) {
-        console.log('deregister event')
+        console.log('dnd deregister event')
         deregisterEvent();
       }
     }
@@ -275,7 +275,7 @@ const handleDragStartConditions = (function handleDragStartConditions() {
   }
 
   function callCallback() {
-    console.log('call callback')
+    console.log('dnd call callback')
     clearTimeout(timer);
     deregisterEvent();
     clb();
@@ -309,7 +309,7 @@ function onMouseDown(event) {
         startDrag = false;
       }
 
-      console.debug('dnd ', 'onMouseDown', 'startDrag:', startDrag)
+      console.log('dnd ', 'onMouseDown', 'startDrag:', startDrag)
 
       if (startDrag) {
         handleDragStartConditions(e, container.getOptions().dragBeginDelay, () => {
