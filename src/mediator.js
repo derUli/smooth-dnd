@@ -481,7 +481,9 @@ function initiateDrag(position, cursor) {
 }
 
 function onMouseMove(event) {
-  event.preventDefault();
+  if(!handleScroll){
+    event.preventDefault();
+  }
   const e = getPointerEvent(event);
   if (!draggableInfo) {
     initiateDrag(e, Utils.getElementCursor(event.target));
