@@ -286,13 +286,7 @@ function onMouseDown(event) {
   if (!isDragging && (e.button === undefined || e.button === 0)) {
     grabbedElement = Utils.getParent(e.target, '.' + constants.wrapperClass);
     if (grabbedElement) {
-      // Fix by velian
-      const isIOS = (/iPad|iPhone|iPod/.test(navigator.platform) ||
-        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1))
-      if(isIOS && event.type === 'touchstart') {
-        event.preventDefault();
-      }
-      const containerElement = Utils.getParent(grabbedElement, '.' + constants.containerClass);
+           const containerElement = Utils.getParent(grabbedElement, '.' + constants.containerClass);
       const container = containers.filter(p => p.element === containerElement)[0];
       const dragHandleSelector = container.getOptions().dragHandleSelector;
       const nonDragAreaSelector = container.getOptions().nonDragAreaSelector;
@@ -307,6 +301,13 @@ function onMouseDown(event) {
       }
 
       if (startDrag) {
+        // Fix by velian
+        const isIOS = (/iPad|iPhone|iPod/.test(navigator.platform) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1))
+        if(isIOS && event.type === 'touchstart') {
+          event.preventDefault();
+        }
+        
         handleDragStartConditions(e, container.getOptions().dragBeginDelay, () => {
           Utils.clearSelection();
           initiateDrag(e, Utils.getElementCursor(event.target));
