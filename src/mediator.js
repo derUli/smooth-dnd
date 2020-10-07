@@ -286,6 +286,7 @@ function onMouseDown(event) {
   if (!isDragging && (e.button === undefined || e.button === 0)) {
     grabbedElement = Utils.getParent(e.target, '.' + constants.wrapperClass);
     if (grabbedElement) {
+      // Fix by velian
       const isIOS = (/iPad|iPhone|iPod/.test(navigator.platform) ||
         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1))
       if(isIOS && event.type === 'touchstart') {
