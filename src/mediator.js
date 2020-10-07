@@ -291,6 +291,15 @@ function onMouseDown(event) {
       const dragHandleSelector = container.getOptions().dragHandleSelector;
       const nonDragAreaSelector = container.getOptions().nonDragAreaSelector;
 
+      console.log('target', event.target, 'current target', event.currentTarget)
+      
+      // Fix by velian
+      const isIOS = (/iPad|iPhone|iPod/.test(navigator.platform) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1))
+      if(isIOS && event.type === 'touchstart') {
+        event.preventDefault();
+      }
+
       let startDrag = true;
       if (dragHandleSelector && !Utils.getParent(e.target, dragHandleSelector)) {
         startDrag = false;
@@ -300,14 +309,7 @@ function onMouseDown(event) {
         startDrag = false;
       }
 
-      if (startDrag) {
-        // Fix by velian
-        const isIOS = (/iPad|iPhone|iPod/.test(navigator.platform) ||
-        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1))
-        if(isIOS && event.type === 'touchstart') {
-          event.preventDefault();
-        }
-        
+      if (startDrag) {        
         handleDragStartConditions(e, container.getOptions().dragBeginDelay, () => {
           Utils.clearSelection();
           initiateDrag(e, Utils.getElementCursor(event.target));
