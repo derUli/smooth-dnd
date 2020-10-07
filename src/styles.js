@@ -45,8 +45,8 @@ const css = {
 		'transition': 'all ease-in-out'
 	},
 	[`.${constants.disbaleTouchActions} *`]: {
-		'touch-action': 'none',
-		'-ms-touch-action': 'none'
+		'touch-actions': 'none',
+		'-ms-touch-actions': 'none'
 	},
 	[`.${constants.noUserSelectClass} *`]: {
 		'-webkit-touch-callout': 'none',

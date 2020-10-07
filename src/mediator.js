@@ -211,12 +211,9 @@ const handleDragStartConditions = (function handleDragStartConditions() {
   const moveThreshold = 1;
   const maxMoveInDelay = 5;
 
-
   function onMove(event) {
     const { clientX: currentX, clientY: currentY } = getPointerEvent(event);
-    //console.log('dnd pointer event:', getPointerEvent(event))
     if (!delay) {
-      console.log('dnd no delay')
       if (
         Math.abs(startEvent.clientX - currentX) > moveThreshold ||
         Math.abs(startEvent.clientY - currentY) > moveThreshold
@@ -224,9 +221,6 @@ const handleDragStartConditions = (function handleDragStartConditions() {
         return callCallback();
       }
     } else {
-      console.log('dnd has delay', 
-      Math.abs(startEvent.clientX - currentX) > maxMoveInDelay ||
-      Math.abs(startEvent.clientY - currentY) > maxMoveInDelay)
       if (
         Math.abs(startEvent.clientX - currentX) > maxMoveInDelay ||
         Math.abs(startEvent.clientY - currentY) > maxMoveInDelay
@@ -248,8 +242,6 @@ const handleDragStartConditions = (function handleDragStartConditions() {
       timer = setTimeout(callCallback, delay);
     }
 
-    console.log('dnd register events')
-
     moveEvents.forEach(e => global.document.addEventListener(e, onMove), {
       passive: false
     });
@@ -262,7 +254,6 @@ const handleDragStartConditions = (function handleDragStartConditions() {
   }
 
   function deregisterEvent() {
-    console.log('dnd deregister event')
     clearTimeout(timer);
     moveEvents.forEach(e => global.document.removeEventListener(e, onMove), {
       passive: false
@@ -276,7 +267,6 @@ const handleDragStartConditions = (function handleDragStartConditions() {
   }
 
   function callCallback() {
-    console.log('dnd call callback')
     clearTimeout(timer);
     deregisterEvent();
     clb();
@@ -284,39 +274,21 @@ const handleDragStartConditions = (function handleDragStartConditions() {
 
   return function(_startEvent, _delay, _clb) {
     startEvent = getPointerEvent(_startEvent);
-    delay = (typeof _delay === 'number') ? _delay : (isMobile ? 500 : 0);
-    console.log('dnd delay', delay)
+    delay = (typeof _delay === 'number') ? _delay : (isMobile ? 200 : 0);
     clb = _clb;
 
     registerEvents();
   };
 })();
 
-function disableScroll() { 
-  // Get the current page scroll position 
-  scrollTop = 
-  window.pageYOffset || document.documentElement.scrollTop; 
-  scrollLeft = 
-  window.pageXOffset || document.documentElement.scrollLeft, 
-
-    // if any scroll is attempted, 
-    // set this to the previous value 
-    window.onscroll = function() { 
-      window.scrollTo(scrollLeft, scrollTop); 
-    }; 
-} 
-
-function enableScroll() { 
-  window.onscroll = function() {}; 
-} 
-
 function onMouseDown(event) {
   const e = getPointerEvent(event);
-  console.log('dnd mouse down event', e)
   if (!isDragging && (e.button === undefined || e.button === 0)) {
     grabbedElement = Utils.getParent(e.target, '.' + constants.wrapperClass);
-    console.log('dnd grabbed element', grabbedElement)
     if (grabbedElement) {
+      if(/iP(ad|od|hone)/.test(navigator.userAgent) && event.type === 'touchstart') {
+        event.preventDefault();
+      }
       const containerElement = Utils.getParent(grabbedElement, '.' + constants.containerClass);
       const container = containers.filter(p => p.element === containerElement)[0];
       const dragHandleSelector = container.getOptions().dragHandleSelector;
@@ -331,18 +303,8 @@ function onMouseDown(event) {
         startDrag = false;
       }
 
-      console.log('dnd ', 'onMouseDown', 'startDrag:', startDrag)
-
       if (startDrag) {
-        const target = event.target
-        const tagName = target.tagName
-        console.log('dnd tag name', tagName)
-        if(isMobile){
-          event.preventDefault()
-        }
-        
         handleDragStartConditions(e, container.getOptions().dragBeginDelay, () => {
-          //disableScroll();
           Utils.clearSelection();
           initiateDrag(e, Utils.getElementCursor(event.target));
           addMoveListeners();
@@ -354,13 +316,10 @@ function onMouseDown(event) {
 }
 
 function onMouseUp() {
-  console.log('dnd onmouse up');
-
   removeMoveListeners();
   removeReleaseListeners();
   handleScroll({ reset: true });
   if (cursorStyleElement) {
-    console.log('dnd cursor style element', cursorStyleElement)
     removeStyle(cursorStyleElement);
     cursorStyleElement = null;
   }
@@ -383,7 +342,6 @@ function onMouseUp() {
       handleDrag = null;
     });
   }
-  //enableScroll();
 }
 
 function getPointerEvent(e) {
@@ -393,7 +351,6 @@ function getPointerEvent(e) {
 function dragHandler(dragListeningContainers) {
   let targetContainers = dragListeningContainers;
   return function(draggableInfo) {
-    console.log('dnd draggable Info', draggableInfo)
     let containerBoxChanged = false;
     targetContainers.forEach(p => {
       const dragResult = p.handleDrag(draggableInfo);
@@ -416,10 +373,8 @@ function dragHandler(dragListeningContainers) {
 
 function getScrollHandler(container, dragListeningContainers) {
   if (container.getOptions().autoScrollEnabled) {
-    console.log('dnd autoscroll is enabled');
     return dragScroller(dragListeningContainers);
   } else {
-    console.log('dnd autoscroll is disabled');
     return () => null;
   }
 }
@@ -473,10 +428,6 @@ function initiateDrag(position, cursor) {
   if (handleScroll) {
     handleScroll({ reset: true });
   }
-
-
-  console.log('dnd initiate drag', position, 'cursor', cursor, 'handleScroll', handleScroll)
-  
   handleScroll = getScrollHandler(container, dragListeningContainers);
   dragListeningContainers.forEach(p => p.prepareDrag(p, dragListeningContainers));
   fireOnDragStartEnd(true);
@@ -486,7 +437,6 @@ function initiateDrag(position, cursor) {
 
 function onMouseMove(event) {
   event.preventDefault();
-  
   const e = getPointerEvent(event);
   if (!draggableInfo) {
     initiateDrag(e, Utils.getElementCursor(event.target));

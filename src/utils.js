@@ -245,18 +245,13 @@ export const isMobile = () => {
       global.navigator.userAgent.match(/iPad/i) ||
       global.navigator.userAgent.match(/iPod/i) ||
       global.navigator.userAgent.match(/BlackBerry/i) ||
-      global.navigator.userAgent.match(/Windows Phone/i) ||
-      // iPad OS / iOS 13 on iPad
-      (global.navigator.platform === 'MacIntel' && global.navigator.maxTouchPoints > 1) 
+      global.navigator.userAgent.match(/Windows Phone/i)
     ) {
-      console.log('dnd is mobile:', true, 'useragent:', global.navigator.userAgent)
       return true;
     } else {
-      console.log('dnd is mobile:', false, 'useragent:', global.navigator.userAgent)
       return false;
     }
   }
-  console.log('dnd is mobile:', false)
   return false;
 };
 
