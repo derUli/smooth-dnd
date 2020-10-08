@@ -293,16 +293,14 @@ function onMouseDown(event) {
 
       console.log('target', event.target, 'current target', event.currentTarget)
 
+      console.log('event', event)
+
       // Fix by velian
       const isIOS = (/iPad|iPhone|iPod/.test(navigator.platform) ||
       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1))
 
       if(isIOS && event.type === 'touchstart') {
-        const target = event.target
-        const selectorString = '.card-header-title, a, i'
-        if(!target.matches(selectorString)){
-          event.preventDefault();
-        }
+        event.preventDefault();
       }
 
       let startDrag = true;
