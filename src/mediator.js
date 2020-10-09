@@ -300,10 +300,13 @@ function onMouseDown(event) {
         startDrag = false;
       }
 
+      console.log('event', event)
+      console.log('target', event.target)
+      console.log('currentTarget', event.currentTarget)
+
       if (startDrag) {  
         // Fix by velian
-        const isIOS = (/iPad|iPhone|iPod/.test(navigator.platform) ||
-        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1))
+        const isIOS = document.querySelector('html').className.includes('is-safari-lte13')
   
         if(isIOS && event.type === 'touchstart') {
           event.preventDefault();
