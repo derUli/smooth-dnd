@@ -301,9 +301,6 @@ function onMouseDown(event) {
       }
 
       if (startDrag) {  
-        console.log('target', event.target, 'current target', event.currentTarget)
-        console.log('event', event)
-  
         // Fix by velian
         const isIOS = (/iPad|iPhone|iPod/.test(navigator.platform) ||
         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1))
